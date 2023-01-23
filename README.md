@@ -1,2 +1,3 @@
 # Learning-Javascript
-Contains Javascript code and Html
+Contains Javascript code
+Basis of Learning and Teaching 
