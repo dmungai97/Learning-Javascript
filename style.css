@@ -1,0 +1,45 @@
+.container{
+     background: #6789;
+     width: 400px;
+     height: 250px;
+}
+
+ul li{
+    list-style: none;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    border: 1px solid black;
+    text-align: center;
+    color: wheat;
+    
+}
+
+#main-heading{
+    text-align:center;
+    color: aliceblue;
+}
+
+.container-3{
+    background: #6789;
+    width: 400px;
+    height: 250px;
+}
+
+.boxes{
+    display: flex;
+    align-items: center;
+    
+}
+
+.container-4{
+    margin-top: 100px;
+    background-color: cadetblue;
+}
+
+.hidden-content{
+    display: none;
+}
+
+.hidden-content.reveal-btn{
+    display: block;
+}
