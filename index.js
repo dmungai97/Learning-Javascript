@@ -470,116 +470,285 @@ animals.forEach(i=>{
     console.log(i);
 })
 
-//************************************************ */
-///DOM MANIPULATION////
-//getelementbyid
-const title=document.getElementById('main-heading');
-console.log(title);
 
-//getelementbyclassname
+///Array Methods
+let supers = ["Superman","Batman","Flash","Aquaman"];
+console.log(supers.length);
+console.log(supers[supers.length-1]);
+supers.length=4;//change to two or three
+console.log(supers);
 
-const listItem =document.getElementsByClassName('list-items');
-console.log(listItem);//returns in array form
+console.log(supers.includes('Batman'));//Checks if value is in array
+console.log(supers.pop());//Removes last item from Array
+console.log(supers.shift());//Removes first item from Array
+supers.push("Spider-Man");//Adds item at end of array
+console.log(supers);
+supers.unshift("Thor");//Adds item at begining of array
 
-//getelementbytagname
-const lists =document.getElementsByTagName('li');
-console.log(lists);
 
-//queryselector
-const container = document.querySelector('div');//Selects first one
-console.log(container);
-//queryselector
-const contain = document.querySelectorAll('div');//Selects all
-console.log(contain);//nodelist
+let newSupers = supers.concat(['Wolverine','Cyclops','Professor X']);
+console.log(newSupers);
 
-//styling elements
-const firstTitle = document.querySelector('#main-heading');
-console.log(firstTitle);
-firstTitle.style.color='red';
-firstTitle.style.backgroundColor='blue'; //.style for changing styles
+console.log(supers.join('|'));//Joins array items to string
 
-const listEl = document.querySelectorAll('.list-items');
-for(i=0; i<listEl.length; i++){
-    listEl[i].style.color ='white';//inlinestyle
+let supeers ="Ironman,Hulk,HawkEye";
+let supersArray = supeers.split(',');//Converts string to Array
+console.log(supersArray);
+
+supers.splice(5,1,'Green Lantern');//replaces an item in array
+console.log(supers);
+
+let numArr = [1,2,3,4,5];
+const numArr2 = numArr.slice(1,4);//Returns a portion of array
+console.log(numArr2);
+
+
+/////Array Iterator methods
+//forEach() - used to loop through elements in array,Cannot be used with other array methods
+let heroes = ['Black Mask','Moon-Knight','Shang-Chi','WonderWoman','Black-Panther','Shazam'];
+heroes.forEach(
+    function(value,index,array){
+          console.log(`${value} ,${index} ,${array}`);//Callback function,which the parameter takes value,index and array
+    }
+);
+
+let her =heroes.forEach(
+    function(value,index,array){
+          return value;//does not return anything when using return statement in forEach
+    }
+);
+console.log(her);////does not return anything ,undefined
+
+//map() - Transform elements of an array in a new array. Can be used with other array methods
+let id = ['Mask','Knight','Chi','Woman','Panther','Shuri'];
+let na =[2,4,5];
+function uppperCase(word){
+    return word.toUpperCase();
 }
-console.log(listEl);
+let upper =id.map(uppperCase);
+console.log(upper);
+let lowers =na.map(
+    function(value){
+        return value *6;
+    }
+);
+console.log(lowers);
 
-//Creating elements
-const ul = document.querySelector('ul');
-const li =document.createElement('li');
-ul.append(li); //adding li to ul
-li.innerText='X-men';//adding the text to the element
-li.classList.add('added-list-item');//Adding a class to element
-//li.classList.remove('list-items');//removes class
-console.log(li.classList.contains('list-items'));//checks if it contains the class.
-//li.remove(); Remove the created element
 
-const div =document.querySelector('div');
-const p =document.createElement('p');
-p.innerText='Added Line';
-//Adding elements
-div.append(p);
-//Modifying attributes
-p.setAttribute('id','paragraph');//used for id,adds id to element
-//p.removeAttribute('id'); //Removes id from element
+let digits = [1,2,3];
+function mult(re){
+    return re *5; //multiply each number by 5
+}
+let vals = digits.map(mult);//map and multiply each number by 5
+console.log(vals);
 
-//Modify the text
-const firstList = document.querySelector('.list-items');
-console.log(firstList.innerText);//shows text
-console.log(firstList.textContent);//shows how it appears in code
-console.log(firstList.innerHTML);//shows code
-//
-const t = document.querySelector('#main-heading');
-console.log(t.getAttribute('id'));
 
-////Traverse The DOM//
-//Parent node traversal
+//filter() - Applies conditional statement,If one of the value is true statement is true otherwise false
+let digit = [1,2,3,50,89,32,14,55,33,98,78,64];
+let evenNum= digit.filter(
+    function(value,index,array){
+        return value%2 ===0;
+    }
+);
+console.log(evenNum);
 
-let u = document.querySelector('ul');
-console.log(u);
-console.log(u.parentElement);//Gets parent element
-console.log(u.parentElement.parentElement);//Gets Grandparent element, Traversing upwards
-
-let v = document.querySelector('p');
-console.log(v);
-console.log(v.parentNode);//Gets parent element,Traversing upwards
-
-//Child Node Traversal
-const c =document.querySelector('ul');
-console.log(c.childNodes);//text is visible before elements,Traversing downward
-console.log(c.firstChild);//First child in node
-console.log(c.lastChild);//Last child in node
-c.childNodes[1].style.backgroundColor='cyan';
-console.log(c.children);//select element nodes
-console.log(c.firstElementChild);//selects first child in element
-console.log(c.lastElementChild);//selects last child in element
-
-///DOM EVENT LISTENERS Container-3
-//element.addEventListener("click[Type of event]" ,function,bolean);
-
-const buttonTwo  =document.querySelector('.btn-2');
-function alertBtn(){
-    alert('This is second button');
+//reduce() - reduce array to a single value,Has 4 parameters takes total, value,index,array in parameter
+let number = [1,2,3,50,89,32,14,55,33,98,78,64];
+function add(total,value,index,array){
+    return total +value;
 };
-buttonTwo.addEventListener("click",alertBtn);
+let sums =number.reduce(add,0);
+console.log(sums);
 
-const buttonThree  =document.querySelector('.btn-3');
-function changeColor(){
-    buttonThree.style.backgroundColor='red';
-};
-buttonThree.addEventListener("mouseover",changeColor);
+///some() -  Returns a boolean statement
+let numbers = [1,2,3,50,89,32,14,55,33,98,78,64];
+let higherThanTen =numbers.some(
+    function(value){
+        return value >10;//Checks if there is a value greater than 10
+    }
+);
+console.log(higherThanTen);
 
-//Event listeners Container-4
+//every() - Checks if all values meet the condition otherwise false
+let number1 = [1,2,3,50,89,32,14,55,33,98,78,64];
+let allhigherThanTen =number1.every(
+    function(value){
+        return value>10;//checks if each of array values is greater than 10
+    }
+);
+console.log(allhigherThanTen);
 
-const revealBtn =document.querySelector('.reveal-btn');
-const hiddenContent =document.querySelector('.hidden-content');
+//find() - Checks if a certain value is in array
+let phones = ["Mi","Apple","Samsung","Galaxy","Oppo","Huawei","Redmi"];
 
-function revealContent(){
-    if(hiddenContent.classList.contains('reveal-btn')){
-        hiddenContent.classList.remove('reveal-btn')
-    }else{
-        hiddenContent.classList.add('reveal-btn')
+let findPhone= phones.find(
+    function(value){
+       return value ==="Apple";
+    }
+);
+let finPhone= phones.findIndex(//Returns index position of element
+    function(value){
+       return value ==="Redmi";
+    }
+);
+console.log(finPhone);
+
+//// Example with all array iterator
+const fruit =['Mango','Cherry','Banana','Melon'];
+fruit.forEach(
+    (value,index,array)=>{
+        console.log(value,index);
+    }
+);
+let toUpper =fruit.map(
+    function(value){
+        return value.toUpperCase();
+    }
+);
+console.log(toUpper);
+let fruit1= fruit.every(
+    function(fruit){
+        return fruit.length>3;
+    }
+);
+console.log(fruit1);
+
+let letters = "cba";
+let letter1= letters
+.split('')
+.reverse()
+.join();
+console.log(letter1);
+
+
+////Array methods indepth 2
+
+const companies =[
+    {name: "Company One", category:"Finance",start:1981, end:2003},
+    {name: "Company Two", category:"Retail",start:1992, end:2008},
+    {name: "Company Three", category:"Auto",start:1999, end:2007},
+    {name: "Company Four", category:"Retail",start:1987, end:2010},
+    {name: "Company Five", category:"Technology",start:1986, end:1996},
+    {name: "Company Six", category:"Finance",start:2011, end:2016},
+    {name: "Company Seven", category:"Retail",start:1981, end:1989}
+];
+console.log(companies);
+
+const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+///forEach - no return
+companies.forEach(
+    function(company){
+        console.log(company);
+    }
+);
+
+/////filter() - takes value,index,array in parameter
+//const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+let canDrink=[];
+for(let i= 0; i<ages.length; i++){
+    if(ages[i] >=21){
+        canDrink.push(ages[i]);
     }
 }
-revealBtn.addEventListener('click',revealContent);
+console.log(canDrink);
 
+const canDrunk = ages.filter( value=> value>=21);
+console.log(canDrunk);
+//filter companies
+const retailComp=companies.filter(
+    company=> company.category ==="Retail"
+    
+);
+console.log(retailComp);
+//filter companies that start in 80s
+const eightiesComp= companies.filter(
+    (company)=>{
+        return company.start>=1980 && company.start<1990;
+    }
+);
+console.log(eightiesComp);
+
+//filter() companies that lasted more than 10 years
+const lastTenYrs =  companies.filter(
+    function(company){
+        return company.end - company.start >=10;
+    }
+);
+console.log(lastTenYrs);
+
+///////map() 
+//Create array of company names
+const companNames= companies.map(
+    function(company){
+        return company.name;
+    }
+);
+console.log(companNames);
+//map() ages
+//const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+const sqrt = ages
+.map((age)=> Math.sqrt(age))
+.map((age)=>age *2);
+console.log(sqrt);
+
+
+////Sort() -takes 2values parameter a and b
+//Function used to determine the order of the elements.
+//sort companies by start year
+const sortComp =companies.sort(
+    function(a,b){
+        if(a.start>b.start){
+            return 1;
+        }else{
+            return -1;
+        }
+    });
+
+const sortComp1=companies.sort((a,b)=>(a.start>b.start ? 1 : -1));
+console.log(sortComp);
+///sort ages
+//const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+const sortAges= ages.sort(
+    function(a,b){
+        return a-b;
+    }
+);
+console.log(sortAges);
+
+/////reduce()
+let ageSum =0;
+for(i =0; i<ages.length; i++){
+    ageSum+=ages[i];
+}
+console.log(ageSum);
+//const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+const agesSum=ages.reduce(
+    function(total,age){
+        return total+age;
+    }
+,0);
+console.log(agesSum);
+
+//reduce() total years for companies
+const totalYrs = companies.reduce(
+    function(total,company){
+        return total+ (company.end-company.start);
+    }
+,0);
+console.log(totalYrs);
+
+
+//////Combine the array methods
+//const ages =[16,11,22,33,45,6,76,55,33,22,66,34,76,87];
+const combined = ages
+.map(age=>age*3)
+.filter(age=>age >=40)
+.sort((a,b)=>a-b)
+.reduce((total,a)=>total+a,0)
+
+console.log(combined);
+
+
+
+
+//************************************************ */
